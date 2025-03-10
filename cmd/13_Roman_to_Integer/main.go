@@ -1,15 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
-
-func main() {
-	fmt.Println(romanToInt("III"))
-	fmt.Println(romanToInt("LVIII"))
-	fmt.Println(romanToInt("MCMXCIV"))
-}
 
 func romanToInt(s string) int {
 	symbols := map[string]int{
