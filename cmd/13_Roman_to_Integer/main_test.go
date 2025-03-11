@@ -23,14 +23,12 @@ var testCases = []struct {
 }
 
 func TestRomanToInteger(t *testing.T) {
-	t.Run("romanToInt", func(t *testing.T) {
-		for _, testCase := range testCases {
-			want := testCase.want
-			got := romanToInt(testCase.s)
+	for _, testCase := range testCases {
+		want := testCase.want
+		got := romanToInt(testCase.s)
 
-			if want != got {
-				t.Fatalf("want: %v; got: %v\n", want, got)
-			}
+		if want != got {
+			t.Fatalf("want: %v; got: %v\n", want, got)
 		}
-	})
+	}
 }

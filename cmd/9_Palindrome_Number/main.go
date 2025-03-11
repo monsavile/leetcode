@@ -2,23 +2,9 @@ package main
 
 import (
 	"math"
-	"slices"
-	"strconv"
-	"strings"
 )
 
-func isPalindrome1(x int) bool {
-	s := strconv.Itoa(x)
-
-	sr := strings.Split(s, "")
-	slices.Reverse(sr)
-
-	r := strings.Join(sr, "")
-
-	return s == r
-}
-
-func isPalindrome2(x int) bool {
+func isPalindrome(x int) bool {
 	if x < 0 {
 		return false
 	}
