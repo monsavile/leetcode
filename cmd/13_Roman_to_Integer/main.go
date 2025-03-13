@@ -1,49 +1,40 @@
 package main
 
 import (
-	"strings"
+	"fmt"
 )
 
+func main() {
+	fmt.Println(romanToInt("III"))     // 3
+	fmt.Println(romanToInt("LVIII"))   // 58
+	fmt.Println(romanToInt("MCMXCIV")) // 1994
+}
+
 func romanToInt(s string) int {
-	symbols := map[string]int{
-		"I":  1,
-		"IV": 4,
-		"V":  5,
-		"IX": 9,
-		"X":  10,
-		"XL": 40,
-		"L":  50,
-		"XC": 90,
-		"C":  100,
-		"CD": 400,
-		"D":  500,
-		"CM": 900,
-		"M":  1000,
+	// map of symbols and associated numbers
+	symbols := map[byte]int{
+		'I': 1,
+		'V': 5,
+		'X': 10,
+		'L': 50,
+		'C': 100,
+		'D': 500,
+		'M': 1000,
 	}
 
-	result := 0
-	offset := 0
+	// initialize the result with the last symbol in the input string
+	result := symbols[s[len(s)-1]]
 
-	letters := strings.Split(s, "")
-
-	for offset < len(letters) {
-		cur := letters[offset]
-
-		if offset < len(letters)-1 {
-			next := letters[offset+1]
-
-			if num, ok := symbols[cur+next]; ok {
-				result += num
-				offset += 2
-				continue
-			}
+	// iterate over the range of the input string, excluding the last symbol
+	for i := range len(s) - 1 {
+		// check if the current number is greater than the next number
+		if symbols[s[i]] < symbols[s[i+1]] {
+			// subtract the current number
+			result -= symbols[s[i]]
+		} else {
+			// add the current number
+			result += symbols[s[i]]
 		}
-
-		if v, ok := symbols[cur]; ok {
-			result += v
-		}
-
-		offset++
 	}
 
 	return result
