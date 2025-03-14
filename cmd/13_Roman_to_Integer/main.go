@@ -11,28 +11,19 @@ func main() {
 }
 
 func romanToInt(s string) int {
-	// map of symbols and associated numbers
-	symbols := map[byte]int{
-		'I': 1,
-		'V': 5,
-		'X': 10,
-		'L': 50,
-		'C': 100,
-		'D': 500,
-		'M': 1000,
-	}
-
-	// initialize the result with the last symbol in the input string
+	// Map of symbols and associated numbers
+	symbols := map[byte]int{'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+	// Initialize the result with the last symbol in the input string
 	result := symbols[s[len(s)-1]]
 
-	// iterate over the range of the input string, excluding the last symbol
+	// Iterate over the range of the input string, excluding the last symbol
 	for i := range len(s) - 1 {
-		// check if the current number is greater than the next number
+		// Check if the current number is greater than the next number
 		if symbols[s[i]] < symbols[s[i+1]] {
-			// subtract the current number
+			// Subtract the current number
 			result -= symbols[s[i]]
 		} else {
-			// add the current number
+			// Add the current number
 			result += symbols[s[i]]
 		}
 	}
