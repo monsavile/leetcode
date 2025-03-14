@@ -1,25 +1,28 @@
 package main
 
+import (
+	"fmt"
+)
+
+func main() {
+	fmt.Println(longestCommonPrefix([]string{"flower", "flow", "flight"})) // "fl"
+	fmt.Println(longestCommonPrefix([]string{"dog", "racecar", "car"}))    // ""
+}
+
 func longestCommonPrefix(strs []string) string {
-	r := []byte{}
+	// First word
+	first := strs[0]
 
-	for i := range 200 {
-		if i == len(strs[0]) {
-			break
-		}
-
-		for j := range len(strs) - 1 {
-			if i == len(strs[j+1]) {
-				return string(r)
-			}
-
-			if strs[0][i] != strs[j+1][i] {
-				return string(r)
+	// Iterate over each letter in the first word
+	for idx := range len(first) {
+		// Iterate over other words
+		for _, current := range strs[1:] {
+			// Check if part of the current word matches part of the first word
+			if idx == len(current) || current[idx] != first[idx] {
+				return first[:idx]
 			}
 		}
-
-		r = append(r, strs[0][i])
 	}
 
-	return string(r)
+	return first
 }

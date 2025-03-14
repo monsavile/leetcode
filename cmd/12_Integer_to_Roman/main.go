@@ -27,20 +27,20 @@ func intToRoman(num int) string {
 	// Iterate until the input number is zero
 	for num != 0 {
 		// Iterate over the shifted slice of numbers
-		for i, cur := range numbers[offset:] {
+		for i, current := range numbers[offset:] {
 			// Check if the input number is greater than the current number
-			if num >= cur {
+			if num >= current {
 				// Shift the offset, so we don't have to check for larger numbers next time
 				offset += i
 
 				// Iterate until the input number is less than the current number,
 				// repeat the same symbol several times if necessary
-				for num >= cur {
+				for num >= current {
 					// Add the associated symbol to the result
 					result += symbols[offset]
 
 					// Subtract the input number
-					num -= cur
+					num -= current
 				}
 
 				// Stop iterating over the slice of numbers after am associated symbol has been found
