@@ -1,33 +1,23 @@
 package main
 
 import (
-	"math"
+	"fmt"
 )
 
+func main() {
+	fmt.Println(isPalindrome(121))  // true
+	fmt.Println(isPalindrome(-121)) // false
+	fmt.Println(isPalindrome(10))   // false
+}
+
 func isPalindrome(x int) bool {
-	if x < 0 {
-		return false
+	original := x
+	reversed := 0
+
+	for x > 0 {
+		reversed = 10*reversed + x%10
+		x /= 10
 	}
 
-	s := make([]int, 0)
-	num := x
-
-	for {
-		mod := num % 10
-		num = num / 10
-
-		s = append(s, mod)
-
-		if num == 0 {
-			break
-		}
-	}
-
-	x2 := 0
-
-	for i, v := range s {
-		x2 += v * int(math.Pow10(len(s)-i-1))
-	}
-
-	return x == x2
+	return original == reversed
 }
